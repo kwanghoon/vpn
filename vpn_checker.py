@@ -10,12 +10,25 @@ VPN-style Model Poisoning Checker (CLI)
 Usage (demo):
   python3 vpn_checker.py --mode demo --k 5 --s 2 --classes 3 --time-budget 1.0
 
+With image visualization (requires matplotlib):
+  python3 vpn_checker.py --mode demo --show-images --k 5 --s 2 --classes 3
+  python3 vpn_checker.py --mode demo --save-images --k 5 --s 2 --classes 3
+  python3 vpn_checker.py --mode demo --show-images --save-images --k 5 --s 2
+
 Custom data:
   Prepare numpy arrays:
    - images: shape (N, H, W) uint8 (grayscale 0..255)
    - labels: shape (N,) int
   Then run:
   python3 vpn_checker.py --mode npy --images-npy /path/images.npy --labels-npy /path/labels.npy --k 3 --s 3 --classes 10
+
+Options:
+  --k N           Max tolerated misses (default: 5)
+  --s N           Trigger size N×N (default: 2)
+  --time-budget T Time budget per solve call in seconds (default: 1.0)
+  --show-images   Display sample synthetic images (requires matplotlib)
+  --save-images   Save sample images to files (requires matplotlib)
+  --seed N        Random seed (default: 123)
 """
 
 from __future__ import annotations
